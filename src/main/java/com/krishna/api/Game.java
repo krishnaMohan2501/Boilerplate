@@ -7,6 +7,8 @@ import com.krishna.ShipType;
 import com.krishna.ship.Cruiser;
 import com.krishna.ship.Destroyer;
 import com.krishna.ship.Ship;
+import com.krishna.strategy.DefaultFireStrategy;
+import com.krishna.strategy.FireStrategy;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.*;
@@ -45,19 +47,11 @@ public class Game {
             this.boards.get(0).layShip(new Cruiser(new Coordinates(p1x, p1y), getLayout()), shipSize);
             this.boards.get(1).layShip(new Cruiser(new Coordinates(p2x, p2y), getLayout()), shipSize);
         }
-
-
     }
 
     public void startGame() {
-        Set<Coordinates> targets  = boards.get(turn % 2).getCoordinates();
-        Object[] targetArray = targets.toArray();
-
-        Set<Coordinates> randomTargets = new HashSet<>();
-        randomTargets.add(new Coordinates(new Random().nextInt(50), new Random().nextInt(50)));
-        Object[] myRandomTarget = targets.toArray();
-
-        Object[] randomizedTarger = ArrayUtils.addAll(targetArray, myRandomTarget);
+        DefaultFireStrategy defaultFireStrategy = new DefaultFireStrategy();
+        Object[] randomizedTarger = defaultFireStrategy.fire(boards, turn % 2);
 
         while(true){
 

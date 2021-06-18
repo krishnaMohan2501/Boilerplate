@@ -57,7 +57,7 @@ public class Board {
     public boolean destroy(Coordinates c){
             if (!coordinates.contains(c))
                 return false;
-            System.out.println("Ship destroyed..!!");
+//            System.out.println("Ship destroyed..!!");
             coordinates.remove(c);
             return true;
     }
