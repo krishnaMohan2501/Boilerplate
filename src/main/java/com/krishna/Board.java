@@ -1,6 +1,7 @@
 package com.krishna;
 
 import com.krishna.ship.Ship;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +13,7 @@ public class Board {
     private String playerName;
     private int size;
 
+    @Getter
     // we will be adding ships coordinate of cells which are occupied by ships.
     private Set<Coordinates> coordinates = new HashSet<Coordinates>();
 
@@ -58,5 +60,5 @@ public class Board {
             System.out.println("Ship destroyed..!!");
             coordinates.remove(c);
             return true;
-        }
+    }
 }
